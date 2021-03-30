@@ -10,7 +10,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "*******"
+        "url": "https://github.com/a4bee/node-red-contrib-TCA9554"
     },
     "keywords": [
         "node-red",
