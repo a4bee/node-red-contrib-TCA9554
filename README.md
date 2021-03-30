@@ -28,4 +28,6 @@ for output inject any value to trigger reading<br>
 - Raspberry Pi 4, on Docker contaier.
 
 With docker you need to add folowing line to docker run command:
+```
 docker run ... --device /dev/i2c-1 --user=root --privileged ...
+```
