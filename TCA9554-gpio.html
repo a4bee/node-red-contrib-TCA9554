@@ -1,0 +1,125 @@
+<script type="text/x-red" data-template-name="GPIO Read">
+  <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Name </label>
+      <input type="text" id="node-input-name" />
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-pin"><i class="fa fa-microchip"></i> Pin Number </label>
+      <input type="number" id="node-input-pin" min=0 max=7 />
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-busno"><i class="fa fa-random"></i> Bus (dev/i2c*) </label>
+    <input type="number" id="node-input-bus" min=0 max=7 />
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-address"><i class="fa fa-address-card-o"></i> Bus Address </label>
+    <input type="text" id="node-input-address"/>
+  </div>
+
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("GPIO Read", {
+    category: "TCA9554",
+    color: "#F3E4D4",
+    icon: "a4bee.png",
+    defaults: {
+      name: { value: "", required: false },
+      bus: {
+        value: 1, required: true,
+        validate: function (input) {
+          return input <= 7 && input >= 0
+        }
+      },
+      address: {
+        value: "0x27", required: true, validate: function (v) {
+          var n = parseInt(v, 16);
+          return n >= 32 && n <= 39
+        }
+      },
+      pin: {
+        value: undefined, required: true, validate: function (input) {
+          return input <= 7 && input >= 0
+        }
+      }
+    },
+    outputs: 1,
+    inputs: 1,
+    label: function () {
+      return this.name || (this.pin ? "GPIO Read " + this.pin : "GPIO Read");
+      //return this.name || "TCA9554 IN " + this.pin ;
+    },
+    labelStyle: function () { return this.name ? "node_label_italic" : ""; },
+    outputLabels: ["Gpio reads"],
+    inputLabels: ["Trigger"]
+  });
+</script>
+
+<script type="text/x-red" data-help-name="GPIO Read">
+    <p> The basic Node-RED node for GPIO Expander TCA9554 connected to boards like the Raspberry Pi </p>
+</script>
+
+<script type="text/x-red" data-template-name="GPIO Write">
+  <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Name </label>
+      <input type="text" id="node-input-name" />
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-pin"><i class="fa fa-microchip"></i> Pin Number </label>
+      <input type="number" id="node-input-pin" min=0 max=7 />
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-busno"><i class="fa fa-random"></i> Bus (dev/i2c*) </label>
+    <input type="number" id="node-input-bus" min=0 max=7 />
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-address"><i class="fa fa-address-card-o"></i> Bus Address </label>
+    <input type="text" id="node-input-address"/>
+  </div>
+
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("GPIO Write", {
+    category: "TCA9554",
+    color: "#F3E4D4",
+    icon: "a4bee.png",
+    defaults: {
+      name: { value: "", required: false },
+      bus: {
+        value: 1, required: true, validate: function (input) {
+          return input <= 7 && input >= 0
+        }
+      },
+      address: {
+        value: "0x27", required: true, validate: function (v) {
+          var n = parseInt(v, 16);
+          return n >= 32 && n <= 39
+        }
+      },
+      pin: {
+        value: undefined, required: true, validate: function (input) {
+          return input <= 7 && input >= 0
+        }
+      }
+    },
+    outputs: 1,
+    inputs: 1,
+    label: function () {
+      return this.name || (this.pin ? "GPIO Write " + this.pin : "GPIO Write");
+    },
+    labelStyle: function () { return this.name ? "node_label_italic" : ""; },
+    outputLabels: ["Gpio reads"],
+    inputLabels: ["Trigger"]
+  });
+</script>
+
+<script type="text/x-red" data-help-name="GPIO Write">
+    <p> The basic Node-RED node for GPIO Expander TCA9554 connected to boards like the Raspberry Pi </p>
+</script>
