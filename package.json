@@ -1,6 +1,6 @@
 {
     "name": "node-red-contrib-tca9554",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "The basic Node-RED node for GPIO Expander TCA9554 connected to boards like the Raspberry Pi",
     "dependencies": {
         "i2c-bus": "^5.2.1"
