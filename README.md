@@ -23,6 +23,8 @@ in nodes configuration choose correct pin number, I2C address and Bus<br>
 for input inject msg.payload = true/1 for high state and false/0 for low state<br>
 for output inject any value to trigger reading<br>
 
+![Usage](usage.gif)
+
 ## Tested on
 - Raspberry Pi 4, with Raspberry Pi OS on Host.
 - Raspberry Pi 4, on Docker contaier.
