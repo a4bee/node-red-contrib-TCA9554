@@ -6,7 +6,7 @@ module.exports = function (RED) {
     //const POLARITY_INVERSION_REG = 0x2;
     const CONFIG_REG = 0x3;
 
-    
+
     function setTrue(node) {
         node.status({ fill: "green", shape: "dot", text: "true" })
     }
@@ -59,6 +59,10 @@ module.exports = function (RED) {
 
                 //read actual input
                 let input = i2cX.readByteSync(this.address, INPUT_PORT_REG);
+				
+                    // Close I2C bus
+                    i2cX.closeSync();
+					
                 if ((input & (1 << this.pin)) > 0) {
                     msg.payload = true;
                     setTrue(this)
@@ -109,6 +113,10 @@ module.exports = function (RED) {
                 }
                 //write new output
                 i2cX.writeByteSync(this.address, OUTPUT_PORT_REG, output);
+
+                    // Close I2C bus
+                    i2cX.closeSync();
+
             } else {
                 setWrongProperties(this)
             }
